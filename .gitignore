@@ -1,0 +1,34 @@
+####################################
+# Node.js (Backend & Frontend)
+####################################
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+####################################
+# Frontend Build Outputs (React / Vite / Next)
+####################################
+build/
+dist/
+out/
+.next/
+.vite/
+.cache/
+
+####################################
+# Environment Files (Node / Frontend)
+####################################
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+####################################
+# Package Manager Locks (optional)
+####################################
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
