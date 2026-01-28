@@ -82,3 +82,9 @@ tempCodeRunnerFile.py
 # Credentials and tokens should NEVER be pushed to GitHub
 credentials.json
 token.json
+
+# Model parameters
+models/*.txt
+models/*.pkl
+*.txt
+*.pkl

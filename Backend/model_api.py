@@ -11,7 +11,7 @@ parent_dir = Path(__file__).resolve().parent.parent
 sys.path.append(str(parent_dir))
 
 
-from rough import get_accuracy
+from interface import get_accuracy
 
 app = Flask(__name__)
 CORS(app)
@@ -22,10 +22,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Load trained model parameters
-W1 = np.loadtxt("../w1.txt")
-b1 = np.loadtxt("../b1.txt")
-W2 = np.loadtxt("../w2.txt")
-b2 = np.loadtxt("../b2.txt")
+W1 = np.loadtxt("../data/w1.txt")
+b1 = np.loadtxt("../data/b1.txt")
+W2 = np.loadtxt("../data/w2.txt")
+b2 = np.loadtxt("../data/b2.txt")
 b1 = b1[:, :1]
 b2 = b2[:, :1]
 

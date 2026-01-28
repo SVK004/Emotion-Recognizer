@@ -16,10 +16,20 @@
 # In[104]:
 
 
+
+
 import numpy as np
 import pandas as pd
 import librosa
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DATASET_PATH_NEUTRAL = os.getenv("DATASET_PATH_NEUTRAL")
+DATASET_PATH_SAD = os.getenv("DATASET_PATH_SAD")
+DATASET_PATH_ANGRY = os.getenv("DATASET_PATH_ANGRY")
+DATASET_PATH_HAPPY = os.getenv("DATASET_PATH_HAPPY")
 
 # In[105]:
 
@@ -41,7 +51,7 @@ import librosa
 # import os
 # import shutil
 
-# destination = "D:\\Emotion_Recognizer_using_transformers\\neutral"
+# destination = f"{DATASET_PATH_NEUTRAL}"
 # subPaths = ["\\Actor_01", "\\Actor_02", "\\Actor_03", "\\Actor_04", "\\Actor_05", "\\Actor_06", "\\Actor_07", "\\Actor_08", "\\Actor_09", "\\Actor_10", "\\Actor_11", "\\Actor_12", "\\Actor_13", "\\Actor_14", "\\Actor_15", "\\Actor_16", "\\Actor_17", "\\Actor_18", "\\Actor_19", "\\Actor_20"]
 # initPath = path
 
@@ -68,7 +78,7 @@ import librosa
 # import os
 # import shutil
 
-# destination = "D:\\Emotion_Recognizer_using_transformers\\angry"
+# destination = f"{DATASET_PATH_ANGRY}"
 # subPaths = ["\\Actor_01", "\\Actor_02", "\\Actor_03", "\\Actor_04", "\\Actor_05", "\\Actor_06", "\\Actor_07", "\\Actor_08", "\\Actor_09", "\\Actor_10"]
 # initPath = path
 
@@ -93,7 +103,7 @@ import librosa
 # import os
 # import shutil
 
-# destination = "D:\\Emotion_Recognizer_using_transformers\\sad"
+# destination = f"{DATASET_PATH_SAD}"
 # subPaths = ["\\Actor_01", "\\Actor_02", "\\Actor_03", "\\Actor_04", "\\Actor_05", "\\Actor_06", "\\Actor_07", "\\Actor_08", "\\Actor_09", "\\Actor_10"]
 # initPath = path
 
@@ -118,7 +128,7 @@ import librosa
 # import os
 # import shutil
 
-# destination = "D:\\Emotion_Recognizer_using_transformers\\happy"
+# destination = f"{DATASET_PATH_HAPPY}"
 # subPaths = ["\\Actor_01", "\\Actor_02", "\\Actor_03", "\\Actor_04", "\\Actor_05", "\\Actor_06", "\\Actor_07", "\\Actor_08", "\\Actor_09", "\\Actor_10"]
 # initPath = path
 
@@ -150,7 +160,7 @@ y=[]
 
 
 import os
-source = "D:\\Emotion_Recognizer_using_transformers\\neutral"
+source = f"{DATASET_PATH_NEUTRAL}"
 
 for file in os.listdir(source):
     # var, sr = librosa.load(source + "\\" + file)
@@ -162,7 +172,7 @@ for file in os.listdir(source):
 # In[113]:
 
 
-source = "D:\\Emotion_Recognizer_using_transformers\\sad"
+source = f"{DATASET_PATH_SAD}"
 
 for file in os.listdir(source):
     # sad.append(librosa.tone(source + "\\" + file, sr=48000))
@@ -178,7 +188,7 @@ for file in os.listdir(source):
 # In[114]:
 
 
-source = "D:\\Emotion_Recognizer_using_transformers\\angry"
+source = f"{DATASET_PATH_ANGRY}"
 
 for file in os.listdir(source):
     # angry.append(librosa.tone(source + "\\" + file, sr=48000))
@@ -196,7 +206,7 @@ for file in os.listdir(source):
 
 
 import os
-source = "D:\\Emotion_Recognizer_using_transformers\\happy"
+source = f"{DATASET_PATH_HAPPY}"
 
 for file in os.listdir(source):
     # happy.append(librosa.tone(source + "\\" + file, sr=48000))
