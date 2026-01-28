@@ -1,163 +1,98 @@
 # Emotion Recognizer based on Voice Audio 🎙️🧠
 
-This project is a **Speech Emotion Recognition (SER)** system that identifies human emotions from voice audio using machine learning and deep learning techniques. The system processes raw speech signals, extracts meaningful acoustic features, and classifies emotions using trained models.
-
-The project demonstrates an **end-to-end ML pipeline** — from dataset preparation and preprocessing to feature extraction, model training, and evaluation.
+A full-stack **Speech Emotion Recognition (SER)** system featuring a custom Neural Network implementation and a dual-backend architecture for robust data processing.
 
 ---
 
-## 📌 Project Objectives
+## 🚀 Key Highlights (The "Pro" Stuff)
+- **Mathematical Implementation:** Built a Feed-Forward Neural Network from scratch using NumPy, featuring manual backpropagation and a numerically stable Softmax implementation.
+- **Multi-Service Backend:** Utilizes a Node.js/Express gateway (`app.js`) for frontend communication and a Python/Flask service (`model_api.py`) for ML inference.
+- **Hybrid Model Benchmarking:** Comparative research across SVM, Logistic Regression, Random Forest, and Naive Bayes to establish performance baselines.
+- **Full-Stack Integration:** A React-based frontend dashboard (built with Bolt.ai) for seamless user interaction.
 
-- Analyze human speech signals to detect emotional states  
-- Extract meaningful audio features such as MFCCs  
-- Train machine learning / deep learning models for emotion classification  
-- Evaluate model performance using accuracy and related metrics  
-- Provide a clean and reproducible experimental setup  
+---
+
+## 🧠 The Architecture & Pipeline
+
+### 1. Feature Extraction
+The system utilizes `librosa` to process raw `.wav` signals, extracting **MFCCs (Mel-Frequency Cepstral Coefficients)** and performing signal normalization.
+
+
+
+### 2. Custom Neural Network Implementation
+The core engine is a custom implementation designed for transparency:
+- **Activation Functions:** ReLU for hidden layers and stable Softmax for the output layer.
+- **Gradient Descent:** Manual backpropagation to update weights ($W_1, W_2$) and biases ($b_1, b_2$).
+
+### 3. Dual-Backend Logic
+- **Gateway (Node.js):** Handles frontend requests and manages the application state.
+- **Inference Engine (Python):** Loads pre-trained parameters from `/models` and performs real-time emotion classification.
+
+---
+
+## 📂 Repository Structure
+
+```text
+Emotion-Recognizer/
+├── project/                 # React Frontend (Bolt.ai)
+│   ├── src/                 # UI Components, Pages, and Hooks
+│   ├── public/              # Static assets (HTML, Favicon)
+│   └── .gitignore           # Frontend-specific ignores (e.g., .bolt/)
+├── Backend/                 # Dual-Backend Logic
+│   ├── app.js               # Node.js Express Gateway (Frontend Entry Point)
+│   ├── model_api.py         # Python Flask Service (Inference API)
+│   ├── evaluate.py          # NN performance metrics (formerly findAcc.py)
+│   └── package.json         # Node.js dependencies
+├── notebooks/               # Research & Development
+│   ├── 1_feature_extraction.ipynb
+│   ├── 2_model_benchmarking.ipynb
+│   └── 3_custom_nn_scratch.ipynb
+├── models/                  # Trained Parameters & Checkpoints
+│   ├── w1.txt               # Exported weight 1
+│   ├── b1.txt               # Exported bias 1
+│   └── model_parameters.pkl # Serialized full model
+├── data/                    # Dataset Management (Local Only)
+│   ├── raw/                 # Original, immutable audio files
+│   └── processed/           # Normalized features ready for training
+├── train.py                 # Benchmarking & Training Entry Point (formerly main.py)
+├── config.py                # Centralized Path & Environment Settings
+├── requirements.txt         # Python dependencies
+├── .env                     # Local environment variables (dataset paths)
+├── .gitignore               # Root-level ignore file
+└── README.md                # Project documentation
+```
+
+## 🛠️ Installation & Setup
+#### 1️⃣ Installation
+```
+git clone [https://github.com/SVK004/Emotion-Recognizer.git](https://github.com/SVK004/Emotion-Recognizer.git)
+cd Emotion-Recognizer
+pip install -r requirements.txt
+```
+#### 2️⃣ Configuration
+Create a .env file in the root directory and set your local dataset path:
+```
+DATASET_PATH=D:\Your\Path\To\RAVDESS
+```
+#### 3️⃣ Running the API (Production Mode)
+```
+cd Backend
+python app.py
+```
+The server will start at http://127.0.0.1:5000. Send a POST request to /process-audio with a .wav file to get an emotion prediction.
 
 ---
 
 ## 🎭 Emotions Recognized
-
-The system is designed to classify the following emotions (based on dataset availability):
-
-- Neutral  
-- Calm  
-- Happy  
-- Sad  
-- Angry  
-- Fearful  
-- Disgust  
-- Surprised  
-
+The system classifies the following emotional states:
+- Neutral 😐
+- Angry 😡
+- Sad 😔
+- Happy 😊
 ---
+## 📊 Results & Future Scope
+- **Current Status:** The custom NN achieves competitive accuracy compared to standard ML models while offering full transparency into the decision-making process.
 
-## 📂 Dataset
+- **Next Step:** Implementing real-time emotion recognition via WebSockets for live microphone streams.
 
-- **Dataset Used:** RAVDESS (Ryerson Audio-Visual Database of Emotional Speech and Song)  
-- **Source:** Kaggle  
-- **Data Type:** Speech audio (`.wav` files)  
-- **Speakers:** Multiple actors with labeled emotions  
-
-> ⚠️ The dataset is **not included in this repository** due to size constraints.
-
----
-
-## 🧠 Approach & Pipeline
-
-1. **Dataset Ingestion**
-   - Download and organize audio files
-   - Traverse actor-wise directories
-   - Identify emotion labels using filename encoding
-
-2. **Preprocessing**
-   - Audio loading and normalization
-   - Basic noise handling
-   - Emotion-wise segregation
-
-3. **Feature Extraction**
-   - MFCC (Mel-Frequency Cepstral Coefficients)
-   - Additional spectral features (where applicable)
-
-4. **Model Training**
-   - CNN-based deep learning model
-   - Experiments with different architectures and parameters
-
-5. **Evaluation**
-   - Accuracy calculation
-   - Model comparison across experiments
-
----
-
-## 🛠️ Tech Stack
-
-### Programming Language
-- Python
-
-### Libraries & Frameworks
-- NumPy  
-- Pandas  
-- Librosa  
-- Scikit-learn  
-- TensorFlow / Keras  
-- Matplotlib  
-
-### Development Tools
-- Jupyter Notebook  
-- VS Code  
-
----
-
-## 📁 Repository Structure
-
-```
-Emotion-Recognizer/
-├── Backend/ # Backend-related logic (if applicable)
-├── Frontend/ # Frontend-related files (if applicable)
-├── main.ipynb # Initial preprocessing & experiments
-├── main_CNN.ipynb # CNN-based emotion recognition
-├── main_redefined.ipynb # Refined experiments
-├── main.py # Script-based execution
-├── findAcc.py # Accuracy evaluation helper
-├── README.md # Project documentation
-└── .gitignore # Ignored files & folders
-
-
----
-
-## 🚀 How to Run the Project
-
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/SVK004/Emotion-Recognizer.git
-cd Emotion-Recognizer
-
-2️⃣ Install Dependencies
-bash
-Copy code
-pip install -r requirements.txt
-
-3️⃣ Prepare Dataset
-Download the RAVDESS dataset from Kaggle
-
-Place the dataset in a local folder
-
-Update dataset paths inside the code if required
-
-4️⃣ Run the Model
-bash
-Copy code
-python main.py
-Or open the notebooks:
-
-bash
-Copy code
-jupyter notebook
-```
-## 📊 Results
-Multiple experiments were conducted using CNN-based architectures
-
-Model accuracy varies based on feature set and parameters
-
-Performance evaluation is available via findAcc.py
-
-Detailed metrics such as confusion matrices and per-emotion accuracy can be added in future iterations.
-
-## ⚠️ Notes
-Trained model files and datasets are excluded from version control
-
-This repository focuses on learning, experimentation, and pipeline design
-
-Further optimization and deployment can be done in future versions
-
-### 🎯 Future Improvements
-```md
-Real-time emotion recognition from microphone input
-
-Improved noise robustness
-
-Hyperparameter tuning
-
-Deployment as a web or API-based service
-
-Detailed evaluation visualizations
-
+- **Scalability:** Moving from flat-file storage to a structured database for model versioning.
